@@ -46,7 +46,7 @@ export function AiAssistantPreview() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      text: "Hi, I'm LegalEase — your preview legal assistant. Describe your situation in plain words and I'll point you toward what matters. This preview uses sample responses; the live assistant arrives with accounts in a later milestone.",
+      text: "Hi, I'm LegalEase — your preview legal assistant. Describe your situation in plain words and I'll point you toward what matters. This preview uses sample responses; the live assistant ships in a later milestone.",
     },
   ]);
   const [input, setInput] = useState("");

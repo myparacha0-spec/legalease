@@ -71,9 +71,6 @@ export function AuthCard({ title, description, children }: AuthCardProps) {
         </div>
       </div>
       <p className="mt-6 text-center text-xs leading-relaxed text-muted-foreground">
-        Authentication &amp; dashboards arrive in the next milestone. This form
-        is a design preview only.
-        <br />
         <Link href="/" className="font-medium text-navy hover:underline">
           Back to homepage
         </Link>

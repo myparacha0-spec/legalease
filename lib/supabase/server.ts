@@ -1,25 +1,25 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import { getSupabaseEnv } from "@/lib/config/supabase";
 
 /**
- * Server-side Supabase client (Server Components, Server Actions, Route Handlers).
+ * Server-side Supabase client (Server Components, Server Actions, Route
+ * Handlers). Uses `@supabase/ssr` so auth cookies are kept in sync with the
+ * browser.
  *
- * Requires the same environment variables as the browser client. Uses
- * `@supabase/ssr` so auth cookies are kept in sync with the browser.
+ * Returns `null` when the project is not configured yet — callers should
+ * handle that state (e.g. friendly "not configured" UI) instead of crashing.
  */
 export async function createClient() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const env = getSupabaseEnv();
 
-  if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error(
-      "Missing Supabase environment variables. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local"
-    );
+  if (!env) {
+    return null;
   }
 
   const cookieStore = await cookies();
 
-  return createServerClient(supabaseUrl, supabaseAnonKey, {
+  return createServerClient(env.url, env.anonKey, {
     cookies: {
       getAll() {
         return cookieStore.getAll();
