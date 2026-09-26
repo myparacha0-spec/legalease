@@ -50,7 +50,7 @@ export const faqs: Faq[] = [
       {
         question: "How do I create an account?",
         answer:
-          "Sign up with your email address on the sign-up page. In this preview, the buttons are placeholders — full authentication will be wired up to Supabase in an upcoming milestone.",
+          "Choose a role (Citizen or Lawyer) on the sign-up page, fill in your details, and confirm your email from the link we send you. Then log in to reach your dashboard.",
       },
       {
         question: "What information does LegalEase store about me?",

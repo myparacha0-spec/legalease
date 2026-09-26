@@ -1,0 +1,34 @@
+/**
+ * Application roles and profile types.
+ *
+ * Roles live in the `profiles` database table (never in the client). New
+ * accounts may only register as `citizen` or `lawyer`; the `admin` role is
+ * granted explicitly by operators (see set_profile_role).
+ */
+export const ROLES = ["citizen", "lawyer", "admin"] as const;
+
+export type Role = (typeof ROLES)[number];
+
+export interface Profile {
+  id: string;
+  role: Role;
+  full_name: string;
+  email: string;
+  phone: string | null;
+  city: string | null;
+  avatar_url: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export function isRole(value: unknown): value is Role {
+  return (
+    typeof value === "string" && (ROLES as readonly string[]).includes(value)
+  );
+}
+
+export const DASHBOARD_PATH: Record<Role, string> = {
+  citizen: "/citizen/dashboard",
+  lawyer: "/lawyer/dashboard",
+  admin: "/admin/knowledge-base",
+};
